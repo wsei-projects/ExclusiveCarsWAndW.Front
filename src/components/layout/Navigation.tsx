@@ -16,7 +16,8 @@ export default function Navigation() {
     {
       id: 3,
       name: "API",
-      url: "http://localhost:57678/swagger/index.html",
+      url: "https://localhost:7014/swagger/index.html",
+      target: "_blank",
     },
   ];
 
@@ -63,6 +64,7 @@ export default function Navigation() {
                       className="nav-link"
                       aria-current="page"
                       to={item.url}
+                      target={item.target}
                     >
                       {item.name}
                     </NavLink>
