@@ -1,5 +1,5 @@
-# ExlusiveCarsW&W - frontend
-## Stack technologiczny:
+# ExclusiveCarsW&W - client app
+## Tech Stack:
 
 - [React](https://react.dev/blog/2023/03/16/introducing-react-dev)
 - [React router](https://reactrouter.com/en/main)
