@@ -8,6 +8,7 @@ import SearchCar from "./pages/search-car";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import axios from "axios";
+import { AuthProvider } from "./context/authContext";
 
 import "./assets/scss/custom.scss";
 import "./index.css";
@@ -42,6 +43,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <AuthProvider>
+            <RouterProvider router={router} />
+        </AuthProvider>
     </React.StrictMode>
 );

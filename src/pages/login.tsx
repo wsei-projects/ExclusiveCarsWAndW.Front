@@ -1,21 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../context/authContext";
 
 export default function LoginPage() {
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    // const [message, setMessage] = useState("");
 
-    const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        console.log("submit", email, password);
-        // const email = (document.getElementById("emailLabel") as HTMLInputElement).value;
-        // const password = (document.getElementById("password
+        const result = await login({ email, password });
+
+        // console.log(result);
+
+        // if (result) {
+        //     navigate("/");
+        //     // setTimeout(() => {
+        //     //     navigate("/");
+        //     // }, 1000);
+        // }
     };
 
     return (
         <div className="row justify-content-center align-items-center">
             <form className="col-md-5" onSubmit={submitHandler}>
+                {/* {message && (
+                    <div className="alert alert-danger" role="alert">
+                        {message}
+                    </div>
+                )} */}
                 <h2 className="mb-4">Logowanie</h2>
                 <div className="mb-3">
                     <label htmlFor="emailLabel" className="form-label">
