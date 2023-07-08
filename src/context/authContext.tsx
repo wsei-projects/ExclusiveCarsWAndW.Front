@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useContext, useReducer } from "react";
-import { AuthState, AuthAction, AuthProviderProps, Login, AuthActionPayload } from "../types/interfaces";
+import { AuthState, AuthAction, AuthProviderProps, Login, Register, AuthActionPayload } from "../types/interfaces";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
@@ -17,6 +17,7 @@ export const AuthContext = createContext({
     login: async (login: Login): Promise<any> => {
         return false;
     },
+    register: async (register: Register): Promise<any> => {},
     logout: () => {},
     updateDataUser: (payload: AuthActionPayload) => {},
 });
@@ -62,17 +63,37 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         }
     };
 
+    const register = async (user: Register): Promise<any> => {
+        try {
+            const response = await axios.post("/api/account/register", {
+                email: user.email,
+                password: user.password,
+                confirmPassword: user.confirmPassword,
+            });
+
+            toast(response.data.message, { type: "success" });
+
+            return response;
+        } catch (ex: any) {
+            const message = (Object.values(ex.response.data.errors)[0] as any)[0];
+
+            toast(message, { type: "error" });
+            return ex.response;
+        }
+    };
+
     const logout = () => {
         Cookies.remove("token");
         axios.defaults.headers.common["Authorization"] = null;
         dispatch({ type: "LOGOUT" });
+        toast("Logout succesfull", { type: "success" });
     };
 
     const updateDataUser = (payload: AuthActionPayload) => {
         dispatch({ type: "UPDATE_USER", payload: payload });
     };
 
-    return <AuthContext.Provider value={{ state, login, logout, updateDataUser }}>{children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={{ state, login, register, logout, updateDataUser }}>{children}</AuthContext.Provider>;
 };
 
 const useAuth = () => useContext(AuthContext);

@@ -81,7 +81,7 @@ export default function Navigation() {
                                         </div>
                                     </li>
                                     <li className="nav-item">
-                                        <button type="button" className="btn btn-primary w-100s" onClick={logoutHandler}>
+                                        <button type="button" className="btn btn-primary" onClick={logoutHandler}>
                                             Wyloguj się
                                         </button>
                                     </li>

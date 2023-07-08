@@ -46,6 +46,6 @@
     --bs-btn-padding-y: 0.3125rem;
 }
 
-.cursor-none {
+.cursor-default {
     cursor: default;
 }

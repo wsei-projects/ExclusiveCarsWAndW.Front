@@ -12,6 +12,12 @@ export interface Login {
     password: string;
 }
 
+export interface Register {
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
 export interface AuthProviderProps {
     children: ReactNode;
 }
