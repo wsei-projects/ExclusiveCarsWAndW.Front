@@ -4,6 +4,8 @@ import { createContext, useContext, useReducer } from "react";
 import { AuthState, AuthAction, AuthProviderProps, Login, AuthActionPayload } from "../types/interfaces";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const initialState: AuthState = {
     user: null,
@@ -49,12 +51,13 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             Cookies.set("token", token, { expires: 14 });
             axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-            console.log(Cookies.get("token"));
-
             updateDataUser({ user: response.data.user, isAuthenticated: true });
+
+            toast(response.data.message, { type: "success" });
 
             return response;
         } catch (ex: any) {
+            toast(ex.response.data.message, { type: "error" });
             return ex.response;
         }
     };

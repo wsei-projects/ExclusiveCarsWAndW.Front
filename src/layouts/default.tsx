@@ -6,6 +6,8 @@ import Footer from "../components/layout/Footer";
 import axios from "axios";
 import { useAuth } from "../context/authContext";
 import Cookies from "js-cookie";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function DefaultLayout() {
     const location = useLocation();
@@ -35,6 +37,7 @@ export default function DefaultLayout() {
     return (
         <>
             <Navigation />
+            <ToastContainer />
             <main className="flex-grow-1">
                 {location.pathname === "/" && <Banner />}
                 <div className="container my-5">

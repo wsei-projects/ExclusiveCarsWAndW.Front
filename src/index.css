@@ -12,6 +12,7 @@
     -webkit-text-size-adjust: 100%;
 
     --bs-border-radius: 0.25rem;
+    --toastify-color-progress-light: #d8b4fe;
 }
 
 * {
@@ -45,6 +46,6 @@
     --bs-btn-padding-y: 0.3125rem;
 }
 
-.cursor-default {
+.cursor-none {
     cursor: default;
 }

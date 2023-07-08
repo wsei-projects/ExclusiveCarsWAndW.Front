@@ -8,31 +8,25 @@ export default function LoginPage() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const [message, setMessage] = useState("");
 
     const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const result = await login({ email, password });
 
-        // console.log(result);
+        if (result.status === 200) {
+            setEmail("");
+            setPassword("");
 
-        // if (result) {
-        //     navigate("/");
-        //     // setTimeout(() => {
-        //     //     navigate("/");
-        //     // }, 1000);
-        // }
+            setTimeout(() => {
+                navigate("/");
+            }, 50);
+        }
     };
 
     return (
         <div className="row justify-content-center align-items-center">
             <form className="col-md-5" onSubmit={submitHandler}>
-                {/* {message && (
-                    <div className="alert alert-danger" role="alert">
-                        {message}
-                    </div>
-                )} */}
                 <h2 className="mb-4">Logowanie</h2>
                 <div className="mb-3">
                     <label htmlFor="emailLabel" className="form-label">
@@ -43,7 +37,7 @@ export default function LoginPage() {
                         type="email"
                         value={email}
                         className="form-control"
-                        placeholder="name@example.com"
+                        placeholder="email"
                         autoComplete="email"
                         onChange={(e) => setEmail(e.target.value)}
                     />
@@ -58,7 +52,7 @@ export default function LoginPage() {
                         type="password"
                         value={password}
                         className="form-control"
-                        placeholder="t@3salwo31s"
+                        placeholder="hasło"
                         autoComplete="current-password"
                         onChange={(e) => setPassword(e.target.value)}
                     />

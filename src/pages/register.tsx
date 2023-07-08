@@ -14,7 +14,7 @@ export default function RegisterPage() {
             className="form-control"
             autoComplete="email"
             id="emailLabel"
-            placeholder="name@example.com"
+            placeholder="email"
           />
         </div>
 
@@ -27,7 +27,7 @@ export default function RegisterPage() {
             className="form-control"
             autoComplete="new-password"
             id="passwordLabel"
-            placeholder="t@3salwo31s"
+            placeholder="hasło"
           />
         </div>
 
@@ -40,7 +40,7 @@ export default function RegisterPage() {
             type="password"
             autoComplete="new-password"
             className="form-control"
-            placeholder="t@3salwo31s"
+            placeholder="powtórz hasło"
           />
         </div>
 
