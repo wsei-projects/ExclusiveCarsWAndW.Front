@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
 import Card from "../components/Card";
 import { Car } from "../types/interfaces";
+import axios from "axios";
 
 export default function SearchCarPage() {
     const [cars, setCars] = useState<Array<Car>>([]);
 
     useEffect(() => {
-        fetch("https://localhost:7014/api/cars")
-            .then((response) => response.json())
-            .then((result) => {
-                setCars(result.result);
-            });
+        axios.get(`/api/Car`).then((response) => {
+            setCars(response.data);
+        });
     }, []);
 
     return (

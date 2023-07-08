@@ -6,37 +6,40 @@ export default function RegisterPage() {
       <form className="col-md-5">
         <h2 className="mb-4">Rejestracja</h2>
         <div className="mb-3">
-          <label htmlFor="exampleFormControlInput1" className="form-label">
+          <label htmlFor="emailLabel" className="form-label">
             Email
           </label>
           <input
             type="email"
             className="form-control"
-            id="exampleFormControlInput1"
+            autoComplete="email"
+            id="emailLabel"
             placeholder="name@example.com"
           />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="exampleFormControlInput1" className="form-label">
+          <label htmlFor="passwordLabel" className="form-label">
             Hasło
           </label>
           <input
             type="password"
             className="form-control"
-            id="exampleFormControlInput1"
+            autoComplete="new-password"
+            id="passwordLabel"
             placeholder="t@3salwo31s"
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="exampleFormControlInput1" className="form-label">
+          <label htmlFor="repeatPasswordLabel" className="form-label">
             Powtórz hasło
           </label>
           <input
+            id="repeatPasswordLabel"
             type="password"
+            autoComplete="new-password"
             className="form-control"
-            id="exampleFormControlInput1"
             placeholder="t@3salwo31s"
           />
         </div>

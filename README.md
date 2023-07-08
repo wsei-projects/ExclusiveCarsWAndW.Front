@@ -5,6 +5,7 @@
 - [React router](https://reactrouter.com/en/main)
 - [TypeScript](https://www.typescriptlang.org/docs/)
 - [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+- [Axios](https://axios-http.com/)
 
 ## Wymagania
 Należy zainstalować node.js w wersji 18.x
@@ -17,6 +18,10 @@ Należy zainstalować node.js w wersji 18.x
 
 
 ## Uruchomienie projektu
+- Utwórz plik .env na podstawie .env.example,
+- Dostosuj zmienne środowiskowe do swoich potrzeb,
+- `npm install` - Zainstaluj paczki (upewnij się, że masz zainstalowanego node.js),
+- `npm run dev` - Uruchom projekt w trubie developerskim
 
 ### Install packages
 

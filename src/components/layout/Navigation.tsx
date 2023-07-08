@@ -16,7 +16,7 @@ export default function Navigation() {
     {
       id: 3,
       name: "API",
-      url: "https://localhost:7014/swagger/index.html",
+      url: `${import.meta.env.VITE_BACKEND_URL}/swagger/index.html`,
       target: "_blank",
     },
   ];
