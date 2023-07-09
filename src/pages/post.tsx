@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { Post, Comment } from "../types/interfaces";
 import { useAuth } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function PostPage() {
     const { state } = useAuth();
+    const navigate = useNavigate();
 
     const [post, setPost] = useState<Post | null>(null);
     const [textComment, setTextComment] = useState<string>("");
@@ -60,6 +62,13 @@ export default function PostPage() {
 
     return (
         <>
+            {state.user?.RoleId === 2 && (
+                <div className="d-flex justify-content-end">
+                    <button type="button" className="btn btn-primary mb-2" onClick={() => post?.id && navigate(`/post/${post.id}/edit`)}>
+                        Edytuj post
+                    </button>
+                </div>
+            )}
             {post && (
                 <div className="card w-100 mb-5">
                     <img src={post.imageUrl} alt={post.title} className="card-img-top" />

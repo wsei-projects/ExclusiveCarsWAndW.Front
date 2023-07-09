@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-export default function AddPostPage() {
+export default function PostFormPage() {
+    const { slug } = useParams();
     const [title, setTitle] = useState("");
     const [shortDescription, setShortDescription] = useState("");
     const [description, setDescription] = useState("");
@@ -9,10 +11,16 @@ export default function AddPostPage() {
         event.preventDefault();
     };
 
+    useEffect(() => {
+        if (slug) {
+            // getPost(slug);
+        }
+    }, []);
+
     return (
         <div className="row justify-content-center align-items-center">
             <form className="col-md-5" onSubmit={submitHandler}>
-                <h2 className="mb-4">Dodawanie posta</h2>
+                <h2 className="mb-4">{slug ? "Edycja posta" : "Dodawanie posta"}</h2>
                 <div className="mb-3">
                     <label htmlFor="titleLabel" className="form-label">
                         Tytuł
@@ -56,7 +64,7 @@ export default function AddPostPage() {
 
                 <div className="d-grid gap-2">
                     <button type="submit" className="btn btn-primary">
-                        Dodaj
+                        {slug ? 'Edytuj' : 'Dodaj'}
                     </button>
                 </div>
             </form>

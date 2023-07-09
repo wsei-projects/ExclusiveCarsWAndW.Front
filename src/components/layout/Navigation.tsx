@@ -16,7 +16,7 @@ const navigation = [
     {
         id: 3,
         name: "Dodaj posta",
-        url: "/add-post",
+        url: "/post/add",
     },
     {
         id: 4,
