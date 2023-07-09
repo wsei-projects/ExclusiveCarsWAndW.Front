@@ -15,6 +15,11 @@ const navigation = [
     },
     {
         id: 3,
+        name: "Dodaj posta",
+        url: "/add-post",
+    },
+    {
+        id: 4,
         name: "API",
         url: `${import.meta.env.VITE_BACKEND_URL}/swagger/index.html`,
         target: "_blank",

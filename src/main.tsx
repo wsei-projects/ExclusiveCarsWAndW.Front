@@ -6,6 +6,7 @@ import Error from "./pages/error";
 import Home from "./pages/index";
 import Blog from "./pages/blog";
 import Post from "./pages/post";
+import AddPost from "./pages/add-post";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import axios from "axios";
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: "blog/:slug",
                 element: <Post />,
+            },
+            {
+                path: "add-post",
+                element: <AddPost />,
             },
             {
                 path: "login",
