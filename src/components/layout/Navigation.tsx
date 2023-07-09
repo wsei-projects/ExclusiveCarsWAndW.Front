@@ -10,8 +10,8 @@ const navigation = [
     },
     {
         id: 2,
-        name: "Szukaj samochodu",
-        url: "/search-car",
+        name: "Blog",
+        url: "/blog",
     },
     {
         id: 3,

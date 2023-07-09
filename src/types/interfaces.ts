@@ -31,13 +31,19 @@ export type AuthAction = { type: "UPDATE_USER"; payload: { user: User, isAuthent
 
 export type AuthActionPayload = { user: User, isAuthenticated: boolean };
 
-export interface Car {
+export interface Post {
     id: number;
-    brand: string;
-    class: number;
-    model: string;
-    year: number;
-    pricePerDay: number;
-    imageUrl: string;
+    title: string;
+    creationDate: string;
+    shortDescription: string;
     description: string;
+    imageUrl: string;
+}
+
+export interface Comment {
+    id: number;
+    postId: number;
+    userId: number;
+    creationDate: string;
+    text: string;
 }

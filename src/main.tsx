@@ -4,7 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DefaultLayout from "./layouts/default";
 import Error from "./pages/error";
 import Home from "./pages/index";
-import SearchCar from "./pages/search-car";
+import Blog from "./pages/blog";
+import Post from "./pages/post";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import axios from "axios";
@@ -26,8 +27,12 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: "search-car",
-                element: <SearchCar />,
+                path: "blog",
+                element: <Blog />,
+            },
+            {
+                path: "blog/:slug",
+                element: <Post />,
             },
             {
                 path: "login",
