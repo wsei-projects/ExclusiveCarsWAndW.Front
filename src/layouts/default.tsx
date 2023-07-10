@@ -6,8 +6,8 @@ import Footer from "../components/layout/Footer";
 import axios from "axios";
 import { useAuth } from "../context/authContext";
 import Cookies from "js-cookie";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function DefaultLayout() {
     const location = useLocation();
@@ -24,9 +24,7 @@ export default function DefaultLayout() {
             const response = await axios.get("/api/account/session");
 
             updateDataUser({ user: response.data, isAuthenticated: true });
-        } catch (ex: any) {
-            console.log(ex);
-        }
+        } catch (ex: any) { /* empty */ }
     };
 
     useEffect(() => {

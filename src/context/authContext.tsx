@@ -5,7 +5,6 @@ import { AuthState, AuthAction, AuthProviderProps, Login, Register, AuthActionPa
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const initialState: AuthState = {
     user: null,

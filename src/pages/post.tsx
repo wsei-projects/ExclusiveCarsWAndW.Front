@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { Post, Comment } from "../types/interfaces";
+import { useParams } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function PostPage() {
+    const { slug } = useParams();
     const { state } = useAuth();
     const navigate = useNavigate();
 
@@ -13,46 +17,33 @@ export default function PostPage() {
     const [isAddingComment, setIsAddingComment] = useState<boolean>(false);
 
     const getPost = () => {
-        const post: Post = {
-            id: 1,
-            title: "asdasd",
-            creationDate: "2021-06-01T00:00:00",
-            shortDescription: "asdasd",
-            description:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum! Aliquam Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum! Aliquam Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum! Aliquam Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum! Aliquam Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum! Aliquam Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum! Aliquam Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum! Aliquam Lorem",
-            imageUrl: "asdasd",
-        };
-
-        setPost(post);
+        axios.get(`/api/Posts/${slug}`).then((response) => {
+            setPost(response.data);
+        });
     };
 
     const getComments = () => {
-        const comments: Array<Comment> = [
-            {
-                id: 1,
-                creationDate: "2021-06-01T00:00:00",
-                postId: 1,
-                text: "komentarz jeden",
-                userId: 1,
-            },
-            {
-                id: 2,
-                creationDate: "2021-06-01T00:00:00",
-                postId: 1,
-                text: "komentarz dwa",
-                userId: 1,
-            },
-        ];
+        axios.get(`/api/Posts/${slug}/comments`).then((response) => {
+            setComments(response.data);
+            console.log(response.data, "comments");
+        });
 
         setComments(comments);
     };
 
-    const addComment = () => {
-        console.log("add comment");
+    const addComment = async () => {
+        try {
+            await axios.post(`/api/Comments`, { postId: slug, userId: state.user?.Id, userComment: textComment });
+            toast("Dodałeś komentarz", { type: "success" });
 
-        // setComments((lastState) => [...lastState, comment]);
-        setTextComment("");
-        setIsAddingComment(false);
+            getComments();
+            setTextComment("");
+            setIsAddingComment(false);
+
+        } catch (ex: any) {
+            const message = "Nie udało się dodać komentarza";
+            toast(message, { type: "error" });
+        }
     };
 
     useEffect(() => {
@@ -73,21 +64,20 @@ export default function PostPage() {
                 <div className="card w-100 mb-5">
                     <img src={post.imageUrl} alt={post.title} className="card-img-top" />
                     <div className="card-body">
-                        <h5 className="card-title">{post.title}</h5>
-                        <p className="card-text mb-1">Data utworzenia: {post.creationDate}</p>
-                        <p className="card-text mb-1">Samochód: - </p>
-                        <p className="card-text">{post.description}</p>
+                        <h5 className="card-title">{post.title || "-"}</h5>
+                        <p className="card-text mb-1">Data utworzenia: {post.dateOfCreate}</p>
+                        <p className="card-text mb-1">Samochód: {post.car?.brand} {post.car?.model}</p>
+                        <p className="card-text">{post.longDescription}</p>
                     </div>
                 </div>
             )}
             <h3>Komentarze</h3>
-            {comments ? (
+            {comments && comments.length > 0 ? (
                 comments.map((comment) => (
                     <div className="card mb-3" key={comment.id}>
-                        <div className="card-header">{comment.userId}</div>
+                        <div className="card-header">Dodał: {comment.user?.email}</div>
                         <div className="card-body">
-                            <p className="card-text mb-1">{comment.text}</p>
-                            <p className="card-text fs-6 text-secondary">Dodano: {comment.creationDate}</p>
+                            <p className="card-text">{comment.userComment}</p>
                         </div>
                     </div>
                 ))

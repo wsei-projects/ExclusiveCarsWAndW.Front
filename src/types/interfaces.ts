@@ -33,10 +33,12 @@ export type AuthActionPayload = { user: User, isAuthenticated: boolean };
 
 export interface Post {
     id: number;
+    carId: number;
+    car: Car;
     title: string;
-    creationDate: string;
-    shortDescription: string;
+    dateOfCreate: string;
     description: string;
+    longDescription: string;
     imageUrl: string;
 }
 
@@ -44,6 +46,15 @@ export interface Comment {
     id: number;
     postId: number;
     userId: number;
-    creationDate: string;
-    text: string;
+    user: User;
+    userComment: string;
+}
+
+export interface Car {
+    id: number;
+    brand: string;
+    model: string;
+    year: number;
+    classId: number;
+    description: string;
 }

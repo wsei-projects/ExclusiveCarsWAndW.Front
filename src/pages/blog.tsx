@@ -7,7 +7,7 @@ export default function SearchCarPage() {
     const [posts, setPosts] = useState<Array<Post>>([]);
 
     useEffect(() => {
-        axios.get(`/api/Car`).then((response) => {
+        axios.get(`/api/Posts`).then((response) => {
             setPosts(response.data);
         });
     }, []);
