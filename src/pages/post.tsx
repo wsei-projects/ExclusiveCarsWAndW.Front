@@ -25,7 +25,6 @@ export default function PostPage() {
     const getComments = () => {
         axios.get(`/api/Posts/${slug}/comments`).then((response) => {
             setComments(response.data);
-            console.log(response.data, "comments");
         });
 
         setComments(comments);

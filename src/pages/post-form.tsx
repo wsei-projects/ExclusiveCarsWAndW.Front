@@ -19,7 +19,7 @@ export default function PostFormPage() {
 
         try {
             if (!slug) {
-                await axios.post("/api/Posts", { carId, title, imageUrl, description, longDescription: description });
+                await axios.post("/api/Posts", { carId: `${carId}`, title, imageUrl, description, longDescription: description });
                 toast("Udało się dodać post :)", { type: "success" });
             } else {
                 await axios.put(`/api/Posts/${slug}`, { carId, title, imageUrl, description, longDescription: description });
