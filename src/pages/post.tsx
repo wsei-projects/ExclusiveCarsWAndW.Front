@@ -22,6 +22,20 @@ export default function PostPage() {
         });
     };
 
+    const deletePost = async (id: number) => {
+        try {
+            const confirmed = confirm("Czy na pewno chcesz usunąć post?");
+            if( confirmed === false ) return;
+            
+            await axios.delete(`/api/Posts/${id}`);
+            toast("Usunięto post", { type: "success" });
+            navigate("/");
+        } catch (ex: any) {
+            const message = "Nie udało się usunąć posta";
+            toast(message, { type: "error" });
+        }
+    }
+
     const getComments = () => {
         axios.get(`/api/Posts/${slug}/comments`).then((response) => {
             setComments(response.data);
@@ -38,7 +52,6 @@ export default function PostPage() {
             getComments();
             setTextComment("");
             setIsAddingComment(false);
-
         } catch (ex: any) {
             const message = "Nie udało się dodać komentarza";
             toast(message, { type: "error" });
@@ -53,8 +66,19 @@ export default function PostPage() {
     return (
         <>
             {state.user?.RoleId === 2 && (
-                <div className="d-flex justify-content-end">
-                    <button type="button" className="btn btn-primary mb-2" onClick={() => post?.id && navigate(`/post/${post.id}/edit`)}>
+                <div className="d-flex justify-content-end mb-2">
+                    <button
+                        type="button"
+                        className="btn btn-danger me-2"
+                        onClick={() => post?.id && deletePost(post.id)}
+                    >
+                        Usuń post
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={() => post?.id && navigate(`/post/${post.id}/edit`)}
+                    >
                         Edytuj post
                     </button>
                 </div>
@@ -65,7 +89,9 @@ export default function PostPage() {
                     <div className="card-body">
                         <h5 className="card-title">{post.title || "-"}</h5>
                         <p className="card-text mb-1">Data utworzenia: {post.dateOfCreate}</p>
-                        <p className="card-text mb-1">Samochód: {post.car?.brand} {post.car?.model}</p>
+                        <p className="card-text mb-1">
+                            Samochód: {post.car?.brand} {post.car?.model}
+                        </p>
                         <p className="card-text">{post.longDescription}</p>
                     </div>
                 </div>
