@@ -19,7 +19,7 @@ Należy zainstalować node.js w wersji 18.x
 
 ## Uruchomienie projektu
 - Utwórz plik .env na podstawie .env.example,
-- Dostosuj zmienne środowiskowe do swoich potrzeb,
+- Dostosuj zmienne środowiskowe do swoich potrzeb (BACKEND_URL - Adres do którego zostają wysyłane zapytania),
 - `npm install` - Zainstaluj paczki (upewnij się, że masz zainstalowanego node.js),
 - `npm run dev` - Uruchom projekt w trubie developerskim
 
