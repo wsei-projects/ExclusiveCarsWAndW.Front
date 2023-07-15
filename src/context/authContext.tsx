@@ -47,13 +47,13 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         try {
             const response = await axios.post("/api/account/login", { email: user.email, password: user.password });
 
-            const token = response.data.token;
+            const token = response.data.Token;
             Cookies.set("token", token, { expires: 14 });
             axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-            updateDataUser({ user: response.data.user, isAuthenticated: true });
+            updateDataUser({ user: response.data.User, isAuthenticated: true });
 
-            toast(response.data.message, { type: "success" });
+            toast(response.data.Message, { type: "success" });
 
             return response;
         } catch (ex: any) {
